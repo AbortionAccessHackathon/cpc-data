@@ -15,7 +15,8 @@ Things To Look For:
 * Identify where entities operate without proper medical licensure.
 * Identify where entities operate without proper 990 filing/nonprofit status.
 * Groups that have not filed in a while, are no longer registered -- should not be accepting donations.
-* Go to IRS website.  there's a list of groups that have not filed in 3 years.
+* Go to IRS website.  there's a list of groups that have not filed in 3 years
 * 14 states with public funding to CPCs: Georgia (under TANF), Indiana, Kansas, Louisiana, Michigan, Minnesota, Missouri, New Mexico, North Carolina, North Dakota, Ohio, Pennsylvania, Texas, and Wisconsin.
 
-
+Scripts:
+*get_990_urls.py relies on data/incomplete_ein_list.csv -- bug wcrest for it
