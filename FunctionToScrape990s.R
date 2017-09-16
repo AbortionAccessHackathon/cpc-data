@@ -1,4 +1,7 @@
 # FUNCTION TO COLLECT DATA FROM XML DOCS ON AWS
+
+## from Jeff Lecy's Open Data for Nonprofit Research
+## https://github.com/lecy/Open-Data-for-Nonprofit-Research/tree/master/Open_Nonprofit_Datasets
 #
 # Arguments:
 #   url - link to a nonprofits xml page
