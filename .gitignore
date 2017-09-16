@@ -1,0 +1,9 @@
+.Python
+pip-selfcheck.json
+data/
+lib/
+include/
+bin/
+cpc-data/
+*.swp
+
