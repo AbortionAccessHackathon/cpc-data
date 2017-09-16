@@ -1,0 +1,56 @@
+---
+title: "CPCdata"
+author: "Jenny"
+date: "9/15/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Trying to extract tax return data for Crisis Pregnancy Centers (CPC) from IRS website
+
+
+Install some packages
+```{r}
+library( jsonlite )
+library( R.utils )
+library(data.table)
+library(tidyverse)
+```
+
+Using information from Jeff Lecy's Open Data for Nonprofit Research
+https://github.com/lecy/Open-Data-for-Nonprofit-Research/tree/master/Open_Nonprofit_Datasets
+Download dataframe of returns filed in 2016 (2017 will be incomplete), including name, URL of return, and EIN
+
+```{r}
+Returns990_2016 <- fromJSON("https://s3.amazonaws.com/irs-form-990/index_2016.json")[[1]]
+```
+
+View top few rows to see what we have
+```{r}
+View(head(Returns990_2016))
+```
+
+copy and paste FUNCTION TO COLLECT DATA FROM XML DOCS ON AWS (lines 144 to 2688 of code) from 
+https://github.com/lecy/Open-Data-for-Nonprofit-Research/blob/master/Build_IRS990_E-Filer_Datasets/BUILD_EFILER_DATABASE.R
+into new .R file and run code. Now have functionn scrapeXML() that will extract all data from IRS website. Needs url of return and form type of return (990, 990EZ, etc) as input. These can be obtained from the Returns990_2016 file cross referenced with other information we have on CPCs. 
+
+As a test, I picked the 6th row of Returns990_2016 (url is column 5 and form type is column 4).
+I'm importing it into a data frame, otherwise it will make a list.
+
+
+```{r}
+url1 <- Returns990_2016[6,5]
+form.type <- Returns990_2016[6,4]
+attempt1<-as.data.frame(scrapeXML(url1,form.type))
+```
+
+
+Examine what we have
+```{r}
+glimpse(attempt1)
+```
+
+Notice that dollar amounts are of class factor so will have to be turned into numeric after we figure out which variables we need to keep.
